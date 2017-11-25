@@ -28,7 +28,7 @@ class SignatureMethod_RSA_SHA1(oauth.SignatureMethod):
         """Builds the base signature string."""
         key, raw = self.signing_base(request, consumer, token)
 
-        with open('../mykey.pem', 'r') as f:
+        with open('/Users/mmuunn/Documents/Works/jira-python-restful/oauth_key/mykey.pem', 'r') as f:
             data = f.read()
         privateKeyString = data.strip()
 
@@ -109,6 +109,7 @@ history
 jira_server_url = "http://bug.chenyee.com:8080"
 update_com_url = jira_server_url + "/rest/api/2/component/"
 update_com_content = json.dumps({'name': u'M-MISC(驱动)'})
+update_com_content = json.dumps({'name': u'Y-一键换机'})
 update_com_content
 update_com_url1 = update_com_url + com_dirs[0][0]
 update_com_url1 = update_com_url + com_dirs[0][0]('id')
