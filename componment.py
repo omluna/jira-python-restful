@@ -110,6 +110,7 @@ jira_server_url = "http://bug.chenyee.com:8080"
 update_com_url = jira_server_url + "/rest/api/2/component/"
 update_com_content = json.dumps({'name': u'M-MISC(驱动)'})
 update_com_content = json.dumps({'name': u'Y-一键换机'})
+update_com_content = json.dumps({'leadUserName': u'xuyongji'})
 update_com_content
 update_com_url1 = update_com_url + com_dirs[0][0]
 update_com_url1 = update_com_url + com_dirs[0][0]('id')
@@ -127,10 +128,8 @@ need_update_bsp_id = []
 need_update_sw_id = []
 for coms_project in com_dirs:
     for com in coms_project:
-        if com['name'] == u'M-MISC':
+        if com['name'] == u'L-蓝牙' or com['name'] == u'O-OTA':
             need_update_sw_id.append(com['id'])
-        elif com['name'] == u'A-AAMISC':
-            need_update_bsp_id.append(com['id'])
 need_update_sw_id
 need_update_bsp_id
 len(need_update_bsp_id)
