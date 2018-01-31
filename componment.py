@@ -28,7 +28,7 @@ class SignatureMethod_RSA_SHA1(oauth.SignatureMethod):
         """Builds the base signature string."""
         key, raw = self.signing_base(request, consumer, token)
 
-        with open('/Users/mmuunn/Documents/Works/jira-python-restful/oauth_key/mykey.pem', 'r') as f:
+        with open('/Users/mmuunn/Documents/Works/jira/jira-python-restful/oauth_key/mykey.pem', 'r') as f:
             data = f.read()
         privateKeyString = data.strip()
 

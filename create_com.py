@@ -1,10 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+import sys
 import base64
 import urlparse
 import json
 from tlslite.utils import keyfactory
 import oauth2 as oauth
+
+
+jira_server_url = "http://bug.chenyee.com:8080"
+headers = {"Content-Type": "application/json"}
 
 
 class SignatureMethod_RSA_SHA1(oauth.SignatureMethod):
@@ -64,28 +67,21 @@ project_keys.remove('TRANSTOOL')
 project_keys.remove('TESTTOOLS')
 
 project_keys
+com_template = {
+    "name": u"Y-应用分身",
+    "leadUserName": u"hushengsong",
+    "assigneeType": "COMPONENT_LEAD",
+    "isAssigneeTypeValid": False,
+    "project": None,
+}
 
-com_dirs = []
 for project in project_keys:
-    com_project_url = mother_project_url + '/' + project + '/components'
-    resp, com = client.request(com_project_url, "GET")
-    com_dirs.append(json.loads(com))
-
-assert(len(com_dirs) == len(project_keys))
-
-need_update_sw_id = []
-for coms_project in com_dirs:
-    for com in coms_project:
-        if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
-            # if com['name'] == u'Z-状态栏':
-            need_update_sw_id.append(com['id'])
-
-len(need_update_sw_id)
-
-update_com_content = json.dumps({"leadUserName": u"xionghonggang"})
-#update_com_content = json.dumps({'name': u'S-SystemUI'})
-jira_server_url = "http://bug.chenyee.com:8080"
-for sw_id in need_update_sw_id:
-    update_com_url = jira_server_url + "/rest/api/2/component/" + sw_id
-    resp, content = client.request(method="PUT", uri=update_com_url, headers=headers, body=update_com_content)
-    print resp['status']
+    com_template['project'] = project
+    print com_template
+for project in project_keys:
+    com_template['project'] = project
+    content = json.dumps(com_template)
+    resp, content = client.request(method="POST", uri=create_com_url, headers=headers, body=content)
+    if resp['status'] != '201':
+        errmsg = 'Create comp ' + com_template['name'] + " Failed!!"
+        print errmsg
