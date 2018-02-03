@@ -76,16 +76,118 @@ assert(len(com_dirs) == len(project_keys))
 need_update_sw_id = []
 for coms_project in com_dirs:
     for com in coms_project:
-        if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
-            # if com['name'] == u'Z-状态栏':
+        #if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
+        if com['name'] == u'S-三方应用':
             need_update_sw_id.append(com['id'])
 
 len(need_update_sw_id)
 
-update_com_content = json.dumps({"leadUserName": u"xionghonggang"})
+update_com_content = json.dumps({"leadUserName": u"tianliang"})
 #update_com_content = json.dumps({'name': u'S-SystemUI'})
 jira_server_url = "http://bug.chenyee.com:8080"
 for sw_id in need_update_sw_id:
     update_com_url = jira_server_url + "/rest/api/2/component/" + sw_id
     resp, content = client.request(method="PUT", uri=update_com_url, headers=headers, body=update_com_content)
     print resp['status']
+
+
+
+
+
+#update catalog project
+'''
+list(df[df[u'源头负责人'] == u'冯佩佩']['项目'])
+list(df[df[u'源头负责人'] == u'田亮']['项目'])
+list(df[df[u'源头负责人'] == u'唐超磊']['项目'])
+fengpeipei = list(df[df[u'源头负责人'] == u'冯佩佩']['项目'])
+tianliang = list(df[df[u'源头负责人'] == u'田亮']['项目'])
+tangchaolei = list(df[df[u'源头负责人'] == u'唐超磊']['项目'])
+project_keys
+for project in project_keys:
+    if project[0:7] in tangchaolei:
+        print(project)
+tangchaolei
+project_cata = {}
+project_cata = {'fengpeipei':[], 'tianliang':[], 'tangchaolei':[]}
+for project in project_keys:
+    if project[0:7] in tangchaolei:
+        project_cata['tangchaolei'].append(project)
+    if project[0:7] in fengpeipei:
+        project_cata['fengpeipei'].append(project)
+    if project[0:7] in tianliang:
+        project_cata['tianliang'].append(project)
+project_cata
+project_cata = {u'fengpeipei':[], u'tianliang':[], u'tangchaolei':[]}
+for project in project_keys:
+    if project[0:7] in tangchaolei:
+        project_cata['utangchaolei'].append(project)
+    if project[0:7] in fengpeipei:
+        project_cata['ufengpeipei'].append(project)
+    if project[0:7] in tianliang:
+        project_cata[u'tianliang'].append(project)
+for project in project_keys:
+    if project[0:7] in tangchaolei:
+        project_cata[u'tangchaolei'].append(project)
+    if project[0:7] in fengpeipei:
+        project_cata[u'fengpeipei'].append(project)
+    if project[0:7] in tianliang:
+        project_cata[u'tianliang'].append(project)
+project_cata
+com_dirs = []
+for project in project_cata[u'tianliang']:
+    com_project_url = mother_project_url + '/' + project + '/components'
+    resp, com = client.request(com_project_url, "GET")
+    com_dirs.append(json.loads(com))
+com_dirs
+need_update_sw_id = []
+for coms_project in com_dirs:
+    for com in coms_project:
+        #if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
+        if com['name'] == u'S-三方应用':
+            need_update_sw_id.append(com['id'])
+need_update_sw_id
+update_com_content = json.dumps({"leadUserName": u"tianliang"})
+#update_com_content = json.dumps({'name': u'S-SystemUI'})
+jira_server_url = "http://bug.chenyee.com:8080"
+for sw_id in need_update_sw_id:
+    update_com_url = jira_server_url + "/rest/api/2/component/" + sw_id
+    resp, content = client.request(method="PUT", uri=update_com_url, headers=headers, body=update_com_content)
+    print resp['status']
+project_cata
+com_dirs = []
+for project in project_cata[u'fengpeipei']:
+    com_project_url = mother_project_url + '/' + project + '/components'
+    resp, com = client.request(com_project_url, "GET")
+    com_dirs.append(json.loads(com))
+need_update_sw_id = []
+for coms_project in com_dirs:
+    for com in coms_project:
+        #if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
+        if com['name'] == u'S-三方应用':
+            need_update_sw_id.append(com['id'])
+update_com_content = json.dumps({"leadUserName": u"fengpeipei"})
+#update_com_content = json.dumps({'name': u'S-SystemUI'})
+jira_server_url = "http://bug.chenyee.com:8080"
+for sw_id in need_update_sw_id:
+    update_com_url = jira_server_url + "/rest/api/2/component/" + sw_id
+    resp, content = client.request(method="PUT", uri=update_com_url, headers=headers, body=update_com_content)
+    print resp['status']
+com_dirs = []
+for project in project_cata[u'tangchaolei']:
+    com_project_url = mother_project_url + '/' + project + '/components'
+    resp, com = client.request(com_project_url, "GET")
+    com_dirs.append(json.loads(com))
+need_update_sw_id = []
+for coms_project in com_dirs:
+    for com in coms_project:
+        #if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
+        if com['name'] == u'S-三方应用':
+            need_update_sw_id.append(com['id'])
+update_com_content = json.dumps({"leadUserName": u"tangchaolei"})
+#update_com_content = json.dumps({'name': u'S-SystemUI'})
+jira_server_url = "http://bug.chenyee.com:8080"
+for sw_id in need_update_sw_id:
+    update_com_url = jira_server_url + "/rest/api/2/component/" + sw_id
+    resp, content = client.request(method="PUT", uri=update_com_url, headers=headers, body=update_com_content)
+    print resp['status']
+'''
