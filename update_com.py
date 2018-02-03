@@ -56,7 +56,7 @@ resp, projects = client.request(mother_project_url, "GET")
 projects_dir = json.loads(projects)
 project_keys = []
 for project in projects_dir:
-    print project['key']
+    print(project['key'])
     project_keys.append(project['key'])
 
 project_keys.remove('TEMP')
