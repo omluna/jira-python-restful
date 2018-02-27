@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import sys
 import base64
 import urlparse
@@ -66,15 +68,24 @@ project_keys.remove('TEMP')
 project_keys.remove('TRANSTOOL')
 project_keys.remove('TESTTOOLS')
 
-project_keys
+#project_keys
+#com_template = {
+#    "name": u"T-TestTools",
+#    "leadUserName": u"fanwei",
+#    "assigneeType": "COMPONENT_LEAD",
+#    "isAssigneeTypeValid": False,
+#    "project": None,
+#}
+
 com_template = {
-    "name": u"Y-应用分身",
-    "leadUserName": u"hushengsong",
+    "name": u"Y-硬件",
+    "leadUserName": u"lij",
     "assigneeType": "COMPONENT_LEAD",
     "isAssigneeTypeValid": False,
     "project": None,
 }
 
+create_com_url = jira_server_url + '/rest/api/2/component'
 for project in project_keys:
     com_template['project'] = project
     print com_template
