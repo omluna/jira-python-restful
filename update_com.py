@@ -65,6 +65,8 @@ project_keys.remove('TEMP')
 project_keys.remove('TRANSTOOL')
 project_keys.remove('TESTTOOLS')
 project_keys.remove('SCLUB')
+project_keys.remove('OA')
+project_keys.remove('DSHOP')
 #project_keys = ['CSW1703CTA']
 
 com_dirs = []
