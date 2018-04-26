@@ -57,16 +57,21 @@ mother_project_url = 'http://bug.chenyee.com:8080/rest/api/2/project'
 resp, projects = client.request(mother_project_url, "GET")
 projects_dir = json.loads(projects)
 project_keys = []
+project_need_keys = ['SW17W16', 'CSW1702', 'CSW1705', 'CSW1703', 'CSW1707']
 for project in projects_dir:
-    print(project['key'])
-    project_keys.append(project['key'])
+    if project['key'][:7] in project_need_keys:
+        print(project['key'])
+        project_keys.append(project['key'])
 
-project_keys.remove('TEMP')
-project_keys.remove('TRANSTOOL')
-project_keys.remove('TESTTOOLS')
-project_keys.remove('SCLUB')
-project_keys.remove('OA')
-project_keys.remove('DSHOP')
+try:
+    project_keys.remove('TEMP')
+    project_keys.remove('TRANSTOOL')
+    project_keys.remove('TESTTOOLS')
+    project_keys.remove('SCLUB')
+    project_keys.remove('OA')
+    project_keys.remove('D2SHOP')
+except:
+    pass
 #project_keys = ['CSW1703CTA']
 
 com_dirs = []
@@ -155,15 +160,15 @@ CTA1703_com = [
 need_update_sw_id = []
 for coms_project in com_dirs:
     for com in coms_project:
-        if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
-            # if com['name'] == u'S-三方应用':
+        #if com['name'] == u'L-录屏' or com['name'] == u'C-长截屏':
+        if com['name'] == u'X-相机':
             # if com['name'] == u'S-手电筒' or com['name'] == u'Z-指南针' or com['name'] == u'X-系统备份':
             # if com['name'] in CTA1703_com:
             need_update_sw_id.append(com['id'])
 
 len(need_update_sw_id)
 
-update_com_content = json.dumps({"leadUserName": u"zhaocl"})
+update_com_content = json.dumps({"leadUserName": u"huangly"})
 #update_com_content = json.dumps({'name': u'S-SystemUI'})
 jira_server_url = "http://bug.chenyee.com:8080"
 for sw_id in need_update_sw_id:
