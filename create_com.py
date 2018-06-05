@@ -64,9 +64,16 @@ for project in projects_dir:
     print project['key']
     project_keys.append(project['key'])
 
-project_keys.remove('TEMP')
-project_keys.remove('TRANSTOOL')
-project_keys.remove('TESTTOOLS')
+
+try:
+    project_keys.remove('TEMP')
+    project_keys.remove('TRANSTOOL')
+    project_keys.remove('TESTTOOLS')
+    project_keys.remove('SCLUB')
+    project_keys.remove('OA')
+    project_keys.remove('D2SHOP')
+except:
+    pass
 
 #project_keys
 #com_template = {
@@ -78,8 +85,8 @@ project_keys.remove('TESTTOOLS')
 #}
 
 com_template = {
-    "name": u"Y-硬件",
-    "leadUserName": u"lij",
+    "name": u"D-多媒体",
+    "leadUserName": u"liuzh",
     "assigneeType": "COMPONENT_LEAD",
     "isAssigneeTypeValid": False,
     "project": None,
